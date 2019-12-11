@@ -1,9 +1,15 @@
 %% Figure 7 Panel B
-% Function to create bootstrapped confidence intervals for the linear regression.
 %
-% Author: Jan H Kirchner
-% email: jan.kirchner@brain.mpg.de
-% December 2019;
+% Function to create bootstrapped confidence intervals for the linear regression.
+% Title: Adaptation of spontaneous activity in the developing visual
+% cortex
+% Authors: Marina E. Wosniack, Jan H. Kirchner, Ling-Ya Chao, Nawal
+% Zabouri, Christian Lohmann, Julijana Gjorgjieva
+% Submitted: December 2019
+%
+% Jan H Kirchner
+% jan.kirchner@brain.mpg.de
+%
 
 
 function [RGL , LB , UB , DX , CCSAMP] = bootstrapRegression(X , Y , N)
