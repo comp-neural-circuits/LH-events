@@ -1,9 +1,15 @@
 %% Figure 7 Panel B + Supplementary
 % Generates scatter plot of H-event amplitude vs. average preceding activity. Also generates plot that illustrates the effect of varying the inclusion criterion.
+% 
+% Title: Adaptation of spontaneous activity in the developing visual
+% cortex
+% Authors: Marina E. Wosniack, Jan H. Kirchner, Ling-Ya Chao, Nawal
+% Zabouri, Christian Lohmann, Julijana Gjorgjieva
+% Submitted: December 2019
 %
-% Author: Jan H Kirchner
-% email: jan.kirchner@brain.mpg.de
-% December 2019;
+% Jan H Kirchner
+% jan.kirchner@brain.mpg.de
+%
 
 
 
