@@ -1,7 +1,7 @@
 #
 # Adaptation of spontaneous activity in the developing visual cortex
 # M. E. Wosniack et al.
-#
+# eu
 # Data analysis codes
 # Auxiliar functions file: extra_functions.py
 #
