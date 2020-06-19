@@ -133,3 +133,119 @@ def make_bootstrap(df_boot):
         vec_corr_boots.append(r2)
     sorted_vec_corr_boots = np.sort(vec_corr_boots)
     return(sorted_vec_corr_boots[24], sorted_vec_corr_boots[974])
+#
+def computing_differences(data_frame):
+    """
+    Returns the absolute difference in the activity across consecutive recordings
+    Not an elegant function.
+
+    Parameters
+    ----------
+    data_frame: DataFrame
+        This has the information of the average activity per recording
+        Each animal has several recordings, just to keep in mind
+
+    Returns
+    -------
+    DataFrame
+        DataFrame with the absolute difference in recording activity for increasing
+        number of difference between consecutive recordings. E.g., difference in
+        activity of a recording with next one; difference in activity of a recording
+        with the second next one, and so on. I kept it up to 8
+    """
+    rec_dist_one = []
+    rec_dist_two = []
+    rec_dist_three = []
+    rec_dist_four = []
+    rec_dist_five = []
+    rec_dist_six = []
+    rec_dist_seven = []
+    rec_dist_eight = []
+    for animal in np.unique(data_frame['ID']):
+        sub_df = data_frame[data_frame['ID'] == animal]
+        sub_df.reset_index(drop=True, inplace=True)
+        for ii in range(len(sub_df) - 1):
+            if (sub_df['Recording'][ii + 1] - sub_df['Recording'][ii]) == 1:
+                rec_dist_one.append(sub_df['Avg_activity'][ii + 1] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 1] - sub_df['Recording'][ii]) == 2:
+                rec_dist_two.append(sub_df['Avg_activity'][ii + 1] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 1] - sub_df['Recording'][ii]) == 3:
+                rec_dist_three.append(sub_df['Avg_activity'][ii + 1] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 1] - sub_df['Recording'][ii]) == 4:
+                rec_dist_four.append(sub_df['Avg_activity'][ii + 1] - sub_df['Avg_activity'][ii])
+    #
+        for ii in range(len(sub_df) - 2):
+            if (sub_df['Recording'][ii + 2] - sub_df['Recording'][ii]) == 2:
+                rec_dist_two.append(sub_df['Avg_activity'][ii + 2] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 2] - sub_df['Recording'][ii]) == 3:
+                rec_dist_three.append(sub_df['Avg_activity'][ii + 2] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 2] - sub_df['Recording'][ii]) == 4:
+                rec_dist_four.append(sub_df['Avg_activity'][ii + 2] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 2] - sub_df['Recording'][ii]) == 5:
+                rec_dist_five.append(sub_df['Avg_activity'][ii + 2] - sub_df['Avg_activity'][ii])
+    #
+        for ii in range(len(sub_df) - 3):
+            if (sub_df['Recording'][ii + 3] - sub_df['Recording'][ii]) == 3:
+                rec_dist_three.append(sub_df['Avg_activity'][ii + 3] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 3] - sub_df['Recording'][ii]) == 4:
+                rec_dist_four.append(sub_df['Avg_activity'][ii + 3] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 3] - sub_df['Recording'][ii]) == 5:
+                rec_dist_five.append(sub_df['Avg_activity'][ii + 3] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 3] - sub_df['Recording'][ii]) == 6:
+                rec_dist_six.append(sub_df['Avg_activity'][ii + 3] - sub_df['Avg_activity'][ii])
+    #
+        for ii in range(len(sub_df) - 4):
+            if (sub_df['Recording'][ii + 4] - sub_df['Recording'][ii]) == 4:
+                rec_dist_four.append(sub_df['Avg_activity'][ii + 4] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 4] - sub_df['Recording'][ii]) == 5:
+                rec_dist_five.append(sub_df['Avg_activity'][ii + 4] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 4] - sub_df['Recording'][ii]) == 6:
+                rec_dist_six.append(sub_df['Avg_activity'][ii + 4] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 4] - sub_df['Recording'][ii]) == 7:
+                rec_dist_seven.append(sub_df['Avg_activity'][ii + 4] - sub_df['Avg_activity'][ii])
+    #
+        for ii in range(len(sub_df) - 5):
+            if (sub_df['Recording'][ii + 5] - sub_df['Recording'][ii]) == 5:
+                rec_dist_five.append(sub_df['Avg_activity'][ii + 5] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 5] - sub_df['Recording'][ii]) == 6:
+                rec_dist_six.append(sub_df['Avg_activity'][ii + 5] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 5] - sub_df['Recording'][ii]) == 7:
+                rec_dist_seven.append(sub_df['Avg_activity'][ii + 5] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 5] - sub_df['Recording'][ii]) == 8:
+                rec_dist_eight.append(sub_df['Avg_activity'][ii + 5] - sub_df['Avg_activity'][ii])
+    #
+        for ii in range(len(sub_df) - 6):
+            if (sub_df['Recording'][ii + 6] - sub_df['Recording'][ii]) == 6:
+                rec_dist_six.append(sub_df['Avg_activity'][ii + 6] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 6] - sub_df['Recording'][ii]) == 7:
+                rec_dist_seven.append(sub_df['Avg_activity'][ii + 6] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 6] - sub_df['Recording'][ii]) == 8:
+                rec_dist_eight.append(sub_df['Avg_activity'][ii + 6] - sub_df['Avg_activity'][ii])
+    #
+        for ii in range(len(sub_df) - 7):
+            if (sub_df['Recording'][ii + 7] - sub_df['Recording'][ii]) == 7:
+                rec_dist_seven.append(sub_df['Avg_activity'][ii + 7] - sub_df['Avg_activity'][ii])
+            if (sub_df['Recording'][ii + 7] - sub_df['Recording'][ii]) == 8:
+                rec_dist_eight.append(sub_df['Avg_activity'][ii + 7] - sub_df['Avg_activity'][ii])
+
+    #
+        for ii in range(len(sub_df) - 8):
+            if (sub_df['Recording'][ii + 8] - sub_df['Recording'][ii]) == 8:
+                rec_dist_eight.append(sub_df['Avg_activity'][ii + 8] - sub_df['Avg_activity'][ii])
+
+    # now organizing this into a dictionary!
+    amp_diff_recordings = {}
+    amp_diff_recordings['1'] = rec_dist_one
+    amp_diff_recordings['2'] = rec_dist_two
+    amp_diff_recordings['3'] = rec_dist_three
+    amp_diff_recordings['4'] = rec_dist_four
+    amp_diff_recordings['5'] = rec_dist_five
+    amp_diff_recordings['6'] = rec_dist_six
+    amp_diff_recordings['7'] = rec_dist_seven
+    amp_diff_recordings['8'] = rec_dist_eight
+
+    # and preparing a dataframe out of it
+    amp_diff_recordings = pd.DataFrame.from_dict(amp_diff_recordings, orient='index')
+    amp_diff_recordings = amp_diff_recordings.transpose()
+
+    return amp_diff_recordings

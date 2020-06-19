@@ -83,7 +83,7 @@ list_names_files = np.asarray(data_lh['Animal_name'])
 list_names_animals = np.asarray(data_lh['Individual_name'])
 recording_aux = np.ones(len(data_lh))
 list_aux = []
-aux_ind = 1
+aux_ind = int(list_names_files[0][-2:])
 list_aux.append(aux_ind)
 for ii in range(1, len(data_lh)):
     list_aux.append(int(list_names_files[ii][-2:]))
@@ -190,9 +190,9 @@ def compute_corr_decay(data_frame, tau_decay, tau_len, threshold_to_include, to_
 # plotting the paper figure
 tau_decay = 1000 #decay
 tau_len = 300 #len
-threshold_to_include = 10
+threshold_to_include = 12
 stats = compute_corr_decay(data_lh, tau_decay, tau_len, threshold_to_include, to_plot=True)
-plt.savefig('paper_correlation_parameters.pdf')
+plt.savefig('figures/paper_correlation_parameters.pdf')
 print('95 % CI: '+str(stats[2])+', '+str(stats[3]))
 print('R2: ' + str(stats[0]) + ', ' + 'pval: ' + str(stats[1]))
 print('Total points: ' + str(stats[4]) + ', ' + 'total animals: ' + str(stats[5]))
@@ -217,13 +217,13 @@ plt.fill_between(sum_data_threshold['threshold_include'], sum_data_threshold['c_
 plt.ylim([0,1])
 plt.ylabel('Correlation')
 plt.xlabel('Threshold events')
-#plt.savefig('corr_threshold.pdf')
+plt.savefig('figures/corr_threshold.pdf')
 #%%
 plt.plot(sum_data_threshold['threshold_include'], sum_data_threshold['total_animals'],'-o')
 plt.ylim([0,26])
 plt.xlabel('Threshold to include')
 plt.ylabel('Total animals')
-#plt.savefig('corr_animals_thresh.pdf')
+plt.savefig('figures/corr_animals_thresh.pdf')
 #%%
 #
 # 2. Correlation for different time windows tau_len

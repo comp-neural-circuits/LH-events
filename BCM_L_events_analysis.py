@@ -105,6 +105,7 @@ plt.title('Events that depress')
 plt.xlim([20, 80])
 plt.ylim([0, 36000]) # correcting the limits by hand
 plt.ylabel('Counts')
+plt.savefig('figures/hist_bcm_depresses.pdf')
 #%%
 # same for the potentiating events
 plt.hist(flat_potentiates, bins = [20, 30, 40, 50, 60, 70, 80], histtype='bar', ec='k', density = False)
@@ -113,6 +114,7 @@ plt.title('Events that potentiate')
 plt.xlim([20, 80])
 plt.ylim([0, 36000]) # correcting the limits by hand
 plt.ylabel('Counts')
+plt.savefig('figures/hist_bcm_potentiates.pdf')
 #%%
 # just confirming that we generated events of all the sizes uniformly
 #
