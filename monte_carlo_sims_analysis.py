@@ -77,6 +77,18 @@ plt.savefig('figures/scatter_not_adaptive_size.pdf')
 #
 #%%
 #
+# To supp materials... sparseness of the Hebbian rule not-adaptive
+fig, ax = plt.subplots()
+plt.scatter(data_not_adaptive['theta_u'], data_not_adaptive['Hint'], c=data_not_adaptive['Sparsity'], cmap = 'viridis',s=50,vmin=0, vmax=1)
+plt.xlim([0.3,0.45])
+plt.ylim([2, 5])
+plt.colorbar()
+plt.xlabel('theta_u')
+plt.ylabel('Hint')
+ax.set_aspect(1./ax.get_data_ratio())
+plt.savefig('figures/scatter_not_adaptive_sparseness.pdf')
+#%%
+#
 # RF size MC simulations Hebbian rule non adaptive H-events
 fig, ax = plt.subplots()
 plt.scatter(data_not_adaptive_only_L['theta_u'], data_not_adaptive_only_L['Max_L'], c=data_not_adaptive_only_L['Size'], cmap = 'viridis',s=50,vmin=0, vmax=1)
@@ -101,7 +113,19 @@ plt.xlabel('y0')
 plt.ylabel('Hint')
 ax.set_aspect(1./ax.get_data_ratio())
 plt.savefig('figures/scatter_BCM_size.pdf')
-
+#
+#%%
+# This will go into supplementary materials. The sparseness of the BCM
+fig, ax = plt.subplots()
+plt.scatter(data_BCM['y0'], data_BCM['Hint'], c=data_BCM['Sparsity'], cmap = 'viridis',s=50,vmin=0, vmax=1)
+plt.xlim([0.4,1.2])
+plt.ylim([2, 5])
+plt.colorbar()
+plt.xlabel('y0')
+plt.ylabel('Hint')
+ax.set_aspect(1./ax.get_data_ratio())
+plt.savefig('figures/scatter_BCM_sparseness.pdf')
+#%%
 #%%
 #
 # RF size MC simulations Hebbian rule with adaptive H-events
@@ -288,9 +312,24 @@ plt.ylabel('Topography')
 plt.savefig('figures/all_topo.pdf')
 #%%
 #
+# Sparseness of the selective receptive fields
+not_adaptive_spars_selective = data_not_adaptive['Sparsity'][data_not_adaptive['Classification']=='S']
+BCM_spars_selective = data_BCM['Sparsity'][data_BCM['Classification']=='S']
+adaptive_spars_selective = data_adaptive['Sparsity'][data_adaptive['Classification'] == 'S']
+combined_df_spars = pd.DataFrame({'not_adaptive':pd.Series(not_adaptive_spars_selective), 'BCM':pd.Series(BCM_spars_selective), 'adaptive':pd.Series(adaptive_spars_selective)})
+plt.subplots(figsize = (7,5))
+sns.barplot(data = combined_df_spars, palette='Blues')
+#sns.stripplot(data = combined_df_spars, color='w', jitter=0.2)
+plt.ylabel('Sparseness')
+plt.savefig('figures/all_sparseness.pdf')
+#%%
+#
 # Reporting mean and STD for the topography values:
 print('Hebbian not adaptive: mean T = ' + str(round(np.mean(not_adaptive_topo_selective),2)) + ' STD = ' + str(round(np.std(not_adaptive_topo_selective),2)) )
 print('BCM: mean T = ' + str(round(np.mean(BCM_topo_selective),2)) + ' STD = ' + str(round(np.std(BCM_topo_selective),2)) )
 print('Hebbian adaptive: mean T = ' + str(round(np.mean(adaptive_topo_selective),2)) + ' STD = ' + str(round(np.std(adaptive_topo_selective),2)) )
 
 #%%
+print('Hebbian not adaptive: mean S = ' + str(round(np.mean(not_adaptive_spars_selective),2)) + ' STD = ' + str(round(np.std(not_adaptive_spars_selective),2)) )
+print('BCM: mean S = ' + str(round(np.mean(BCM_spars_selective),2)) + ' STD = ' + str(round(np.std(BCM_spars_selective),2)) )
+print('Hebbian adaptive: mean S = ' + str(round(np.mean(adaptive_spars_selective),2)) + ' STD = ' + str(round(np.std(adaptive_spars_selective),2)) )
